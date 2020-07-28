@@ -15,6 +15,7 @@ class CreateItementitiesTable extends Migration
     {
         Schema::create('itementities', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('item_id');
             $table->string('identifier');
             $table->text('borrowed_by');
             $table->tinyInteger('status'); // 0 nicht vorhanden, 1 vorhanden, 2 verliehen, -1 verloren
