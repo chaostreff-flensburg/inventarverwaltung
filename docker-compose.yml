@@ -1,0 +1,52 @@
+version: '3.3'
+
+networks:
+  web:
+    external: true
+  stack:
+    external: false
+
+services:
+  application:
+    container_name: inventar_application
+    build:
+      context: .
+      dockerfile: ./docker/application.Dockerfile
+      args:
+        USER_ID: $USER_ID
+        GROUP_ID: $GROUP_ID
+    extra_hosts:
+      - 'inventar.localhost:127.0.0.1'
+      - 'inventar.localhost.chaostreff-flensburg.de:127.0.0.1'
+    networks:
+      - web
+      - stack
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.inventar.rule=Host(`inventar.localhost`,`inventar.localhost.chaostreff-flensburg.de`)"
+      - "traefik.http.routers.inventar.entrypoints=web"
+      - "traefik.http.services.inventar.loadbalancer.server.port=80"
+      - "traefik.docker.network=web"
+    working_dir: /var/www/html
+    volumes:
+      - ./config:/var/www/html/config:delegated
+      - ./web:/var/www/html/web:delegated
+      - ./vendor:/var/www/html/vendor:delegated
+      - ./composer.json:/var/www/html/composer.json:cached
+    restart: always
+
+  tooling:
+    container_name: inventar_tooling
+    build:
+      context: .
+      dockerfile: ./docker/tooling.Dockerfile
+      args:
+        USER_ID: $USER_ID
+        GROUP_ID: $GROUP_ID
+    networks:
+      - stack
+    tty: true
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    restart: always
