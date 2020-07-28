@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStoragelocationsTable extends Migration
+class CreateTagItementityTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateStoragelocationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('storagelocations', function (Blueprint $table) {
+        Schema::create('tag_itementity', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description');
+            $table->bigInteger('tag_id');
+            $table->bigInteger('itementity_id');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateStoragelocationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('storagelocations');
+        Schema::dropIfExists('tag_itementity');
     }
 }
