@@ -15,12 +15,12 @@ services:
       args:
         USER_ID: $USER_ID
         GROUP_ID: $GROUP_ID
-    extra_hosts:
-      - 'inventar.localhost:127.0.0.1'
-      - 'inventar.localhost.chaostreff-flensburg.de:127.0.0.1'
     networks:
       - web
       - stack
+    extra_hosts:
+      - 'inventar.localhost:127.0.0.1'
+      - 'inventar.localhost.chaostreff-flensburg.de:127.0.0.1'
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.inventar.rule=Host(`inventar.localhost`,`inventar.localhost.chaostreff-flensburg.de`)"
@@ -29,10 +29,7 @@ services:
       - "traefik.docker.network=web"
     working_dir: /var/www/html
     volumes:
-      - ./config:/var/www/html/config:delegated
-      - ./web:/var/www/html/web:delegated
-      - ./vendor:/var/www/html/vendor:delegated
-      - ./composer.json:/var/www/html/composer.json:cached
+      - ./:/var/www/html
     restart: always
 
   tooling:
