@@ -15,8 +15,6 @@ services:
       args:
         USER_ID: $USER_ID
         GROUP_ID: $GROUP_ID
-    depends_on:
-      - database
     extra_hosts:
       - 'inventar.localhost:127.0.0.1'
       - 'inventar.localhost.chaostreff-flensburg.de:127.0.0.1'
