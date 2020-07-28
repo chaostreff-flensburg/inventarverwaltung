@@ -1,4 +1,4 @@
-FROM php:7.4-apache-stretch
+FROM php:7.3-apache-stretch
 
 # Define build arguments
 ARG USER_ID
