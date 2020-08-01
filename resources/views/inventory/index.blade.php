@@ -9,42 +9,47 @@
     </div>
     <div class="rounded overflow-hidden lg:shadow lg:bg-white mb-20">
         <div class="flex flex-wrap">
-            <div class="w-full hidden lg:block lg:w-1/5 px-5 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Name</div>
-            <div class="w-full hidden lg:block lg:w-1/5 px-5 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Tags</div>
-            <div class="w-full hidden lg:block lg:w-1/5 px-5 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Ort</div>
-            <div class="w-full hidden lg:block lg:w-1/5 px-5 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Ausgeliehen von</div>
-            <div class="w-full hidden lg:block lg:w-1/5 px-5 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"></div>
+            <div class="w-full hidden lg:block lg:w-1/6 px-5 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Image</div>
+            <div class="w-full hidden lg:block lg:w-1/6 px-5 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Name</div>
+            <div class="w-full hidden lg:block lg:w-1/6 px-5 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Tags</div>
+            <div class="w-full hidden lg:block lg:w-1/6 px-5 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Ort</div>
+            <div class="w-full hidden lg:block lg:w-1/6 px-5 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Ausgeliehen von</div>
+            <div class="w-full hidden lg:block lg:w-1/6 px-5 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"></div>
         </div>
         @foreach($items as $item)
         <div class="flex flex-wrap mb-5 lg:mb-0">
-            <div class="w-1/5 px-5 py-5 border-b border-gray-200 bg-white text-sm lg:hidden font-bold">
-                Name
-            </div>
-            <div class="w-4/5 lg:w-1/5 px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                {{ $item->itemname }}<br />{{ $item->identifier }}
+            <div class="w-full lg:w-1/6 border-b border-gray-200 bg-white text-sm overflow-hidden">
+                <img class="w-full" src="{{ URL::asset('storage/images/' . $item->displayImage) }}" alt="{{ $item->itemname }}">
             </div>
 
-            <div class="w-1/5 px-5 py-5 border-b border-gray-200 bg-white text-sm lg:hidden font-bold">
+            <div class="w-2/6 px-5 py-5 border-b border-gray-200 bg-white text-sm lg:hidden font-bold">
+                Name
+            </div>
+            <div class="w-4/6 lg:w-1/6 px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <div class="font-semibold text-gray-700">{{ $item->identifier }}</div>{{ $item->item->name }}
+            </div>
+
+            <div class="w-2/6 px-5 py-5 border-b border-gray-200 bg-white text-sm lg:hidden font-bold">
                 Tags
             </div>
-            <div class="w-4/5 lg:w-1/5 px-5 pt-5 pb-3 border-b border-gray-200 bg-white text-sm">
+            <div class="w-4/6 lg:w-1/6 px-5 pt-5 pb-3 border-b border-gray-200 bg-white text-sm">
                 @foreach($item->tags as $tag)
                     <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{ $tag->name }}</span>
                 @endforeach
             </div>
 
-            <div class="w-1/5 px-5 py-5 border-b border-gray-200 bg-white text-sm lg:hidden font-bold">
+            <div class="w-2/6 px-5 py-5 border-b border-gray-200 bg-white text-sm lg:hidden font-bold">
                 Ort
             </div>
-            <div class="w-4/5 lg:w-1/5 px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{{ $item->storagename }}</span>
+            <div class="w-4/6 lg:w-1/6 px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{{ $item->storagelocation->name }}</span>
             </div>
 
-            <div class="w-full lg:w-1/5 px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <div class="w-full lg:w-1/6 px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <div class="font-bold block lg:hidden mb-2">Ausgeliehen von</div>
                 {{ $item->borrowed_by }}
             </div>
-            <div class="w-full lg:w-1/5 px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
+            <div class="w-full lg:w-1/6 px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
                 <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                     Checkout
                 </button>
