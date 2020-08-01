@@ -46,5 +46,5 @@ RUN composer install
 RUN npm install
 RUN npm run production
 
-
+ENTRYPOINT [ "entrypoint.sh" ]
 
