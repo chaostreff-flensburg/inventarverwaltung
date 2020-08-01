@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     //
-    public function entitys()
+    public function entities()
     {
-        return $this->hasMany('App\Itementity');
+        return $this->hasMany(Itementity::class);
     }
 }

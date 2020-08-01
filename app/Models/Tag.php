@@ -9,6 +9,6 @@ class Tag extends Model
     //
     public function itementitys()
     {
-        return $this->belongsToMany('App\Itementity', 'Tag_Itementity');
+        return $this->belongsToMany(Itementity::class, 'tag_itementity');
     }
 }
