@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateitemsTable extends Migration
+class CreateBorrowlogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateitemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('items', function (Blueprint $table) {
+        Schema::create('borrowlogs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description');
-            $table->bigInteger('image_id')->nullable();
+            $table->bigInteger('people_id');
+            $table->bigInteger('itementity_id');
+            $table->tinyInteger('status');
+            $table->datetime('wanted')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateitemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('borrowlogs');
     }
 }

@@ -19,8 +19,10 @@ class CreateItementitiesTable extends Migration
             $table->string('identifier');
             $table->text('borrowed_by');
             $table->tinyInteger('status'); // 0 nicht vorhanden, 1 vorhanden, 2 verliehen, -1 verloren
+            $table->tinyInteger('consumable');
             $table->integer('amount');
             $table->bigInteger('storagelocation_id');
+            $table->bigInteger('image_id')->nullable();
             $table->timestamps();
         });
     }
