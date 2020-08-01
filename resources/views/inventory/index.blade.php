@@ -2,45 +2,18 @@
 
 @section('content')
 <div class="mx-10 lg:mx-auto">
-    <h1 class="text-2xl mb-8 text-gray-600">Inventarverwaltung</h1>
-    <div class="lg:flex justify-between">
-        <div class="text-gray-700 text-center">
-            <form action="{{ route('listItementities') }}" method="GET" role="search">
-                {{csrf_field()}}
-                @foreach($selectedTagIds as $tag)
-                    <input type="hidden" name="tag[]" value="{{$tag}}">
-                @endforeach
-                @foreach($selectedLocationIds as $location)
-                    <input type="hidden" name="location[]" value="{{$location}}">
-                @endforeach
+    <h1 class="headline">Inventarverwaltung</h1>
 
-                <div class="shadow mb-10 bg-white rounded-md">
-                    <input type="text" value="{{ $search }}" placeholder="Suche..." name="search" class="focus:outline-none border border-transparent px-4 py-2 leading-normal text-gray-700 bg-white" >
-                    @foreach($selectedTags as $tag)
-                        <a href="{{ route('listItementities', ['tag' => array_diff($selectedTagIds, [$tag->id]), 'location' => $selectedLocationIds]) }}" class="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 hover:bg-red-600 hover:text-gray-200">
-                            {{ $tag->name }}
-                            <span class="font-normal">x</span>
-                        </a>
-                    @endforeach
-                    @foreach($selectedLocations as $location)
-                        <a href="{{ route('listItementities', ['location' => array_diff($selectedLocationIds, [$location->id]), 'tag' => $selectedTagIds]) }}" class="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 hover:bg-red-600 hover:text-gray-200">
-                            {{ $location->name }}
-                            <span class="font-normal">x</span>
-                        </a>
-                    @endforeach
-                </div>
-            </form>
-        </div>
-        <div class="text-gray-700 text-center mb-10"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Neues Item</button></div>
-    </div>
+    @include('inventory.searchform')
+
     <div class="rounded overflow-hidden lg:shadow lg:bg-white mb-20">
         <div class="flex flex-wrap">
-            <div class="w-full hidden lg:block lg:w-1/6 px-5 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Image</div>
-            <div class="w-full hidden lg:block lg:w-1/6 px-5 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Name</div>
-            <div class="w-full hidden lg:block lg:w-1/6 px-5 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Tags</div>
-            <div class="w-full hidden lg:block lg:w-1/6 px-5 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Ort</div>
-            <div class="w-full hidden lg:block lg:w-1/6 px-5 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Ausgeliehen von</div>
-            <div class="w-full hidden lg:block lg:w-1/6 px-5 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"></div>
+            <div class="w-full hidden lg:block lg:w-1/6 table__header__column">Image</div>
+            <div class="w-full hidden lg:block lg:w-1/6 table__header__column">Name</div>
+            <div class="w-full hidden lg:block lg:w-1/6 table__header__column">Tags</div>
+            <div class="w-full hidden lg:block lg:w-1/6 table__header__column">Ort</div>
+            <div class="w-full hidden lg:block lg:w-1/6 table__header__column">Ausgeliehen von</div>
+            <div class="w-full hidden lg:block lg:w-1/6 table__header__column"></div>
         </div>
         @foreach($itemEntities as $itemEntity)
         <div class="flex flex-wrap mb-5 lg:mb-0">
@@ -48,27 +21,27 @@
                 <img class="w-full" src="{{ URL::asset('storage/images/' . $itemEntity->displayImage) }}" alt="{{ $itemEntity->itemname }}">
             </div>
 
-            <div class="w-2/6 px-5 py-5 border-b border-gray-200 bg-white text-sm lg:hidden font-bold">
+            <div class="table__column__header lg:hidden">
                 Name
             </div>
             <div class="w-4/6 lg:w-1/6 px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <div class="font-semibold text-gray-700">{{ $itemEntity->identifier }}</div>{{ $itemEntity->item->name }}
             </div>
 
-            <div class="w-2/6 px-5 py-5 border-b border-gray-200 bg-white text-sm lg:hidden font-bold">
+            <div class="table__column__header lg:hidden">
                 Tags
             </div>
             <div class="w-4/6 lg:w-1/6 px-5 pt-5 pb-3 border-b border-gray-200 bg-white text-sm">
                 @foreach($itemEntity->tags as $tag)
-                    <a href="{{ route('listItementities', ['tag' => array_merge($selectedTagIds, [$tag->id]), 'location' => $selectedLocationIds]) }}" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 hover:bg-teal-400">{{ $tag->name }}</a>
+                    <a href="{{ route('listItementities', ['tag' => array_merge($selectedTagIds, [$tag->id]), 'location' => $selectedLocationIds]) }}" class="tag">{{ $tag->name }}</a>
                 @endforeach
             </div>
 
-            <div class="w-2/6 px-5 py-5 border-b border-gray-200 bg-white text-sm lg:hidden font-bold">
+            <div class="table__column__header lg:hidden">
                 Ort
             </div>
             <div class="w-4/6 lg:w-1/6 px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                <a href="{{ route('listItementities', ['tag' => $selectedTagIds, 'location' => array_merge($selectedLocationIds, [$itemEntity->storagelocation->id])]) }}" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{{ $itemEntity->storagelocation->name }}</a>
+                <a href="{{ route('listItementities', ['tag' => $selectedTagIds, 'location' => array_merge($selectedLocationIds, [$itemEntity->storagelocation->id])]) }}" class="tag">{{ $itemEntity->storagelocation->name }}</a>
             </div>
 
             <div class="w-full lg:w-1/6 px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -76,17 +49,17 @@
                 {{ $itemEntity->borrowed_by ?: '—' }}
             </div>
             <div class="w-full lg:w-1/6 px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
-                <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                <button class="btn btn__negative">
                     Checkout
                 </button>
             </div>
         </div>
         @endforeach
-        <div class="border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+        <div class="table__footer">
             <div class="flex justify-between">
-                <div class="text-gray-700 text-center px-4 py-2 m-2">Zurück</div>
-                <div class="text-gray-700 text-center px-4 py-2 m-2">2</div>
-                <div class="text-gray-700 text-center px-4 py-2 m-2">Weiter</div>
+                <div class="table__footer__column">Zurück</div>
+                <div class="table__footer__column">2</div>
+                <div class="table__footer__column">Weiter</div>
             </div>
         </div>
     </div>
@@ -94,7 +67,7 @@
 
 <div class="mx-10 lg:mx-auto">
     <form>
-        <h2 class="text-lg mb-6 text-gray-600">Item</h2>
+        <h2 class="subheadline">Item</h2>
         <div class="rounded overflow-hidden shadow bg-white mb-10 p-10">
             <div class="flex flex-wrap -mx-3 mb-6 w-full max-w-lg">
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -113,7 +86,7 @@
             </div>
         </div>
 
-        <h2 class="text-lg mb-6 text-gray-600">Entity</h2>
+        <h2 class="subheadline">Entity</h2>
         <div class="rounded overflow-hidden shadow bg-white mb-10 p-10">
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3 mb-6 md:mb-0">
@@ -161,7 +134,7 @@
                 </div>
             </div>
         </div>
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-20">Anlegen</button>
+        <button class="btn">Anlegen</button>
     </form>
 </div>
 @endsection
