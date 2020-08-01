@@ -23,6 +23,8 @@ RUN apt-get install -y git
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql
 
+WORKDIR /var/www/html
+
 COPY . .
 
 # Install Composer
