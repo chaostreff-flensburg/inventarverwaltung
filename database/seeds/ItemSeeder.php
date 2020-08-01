@@ -1,9 +1,11 @@
 <?php
 
+use App\Models\Image;
 use App\Models\Item;
 use App\Models\Itementity;
 use App\Models\Tag;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class ItemSeeder extends Seeder
 {
@@ -14,8 +16,13 @@ class ItemSeeder extends Seeder
      */
     public function run()
     {
-        factory(Item::class, 40)->create()->each(static function (Item $item) {
+        $paths = Storage::disk('public')->allFiles('images');
+        Storage::disk('public')->delete($paths);
+        
+        factory(Item::class, 20)->create()->each(static function (Item $item) {
             $item->entities()->save(factory(Itementity::class)->make());
+            $item->image_id = factory(Image::class)->create()->id;
+            $item->save();
         });
 
         $tags = Tag::all();
