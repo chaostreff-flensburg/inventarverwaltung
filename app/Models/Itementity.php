@@ -17,8 +17,18 @@ class Itementity extends Model
         return $this->belongsTo(Item::class);
     }
 
-    public function storage()
+    public function image()
     {
-        return $this->belongsTo(Storagelocation::class, 'storageloaction_id');
+        return $this->hasOne(Image::class, 'id', 'image_id');
+    }
+
+    public function storagelocation()
+    {
+        return $this->belongsTo(Storagelocation::class);
+    }
+
+    public function getDisplayImageAttribute(): string
+    {
+        return $this->image ? optional($this->image)->filename : optional($this->item->image)->filename;
     }
 }
