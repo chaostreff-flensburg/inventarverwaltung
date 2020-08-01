@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Itementity extends Model
 {
     //
-    public function item()
+    /*public function item()
     {
         return $this->belongsTo('App\Item');
     }
@@ -20,5 +20,5 @@ class Itementity extends Model
     public function storage()
     {
         return $this->belongsTo('App\Storagelocation', 'storageloaction_id');
-    }
+    }*/
 }

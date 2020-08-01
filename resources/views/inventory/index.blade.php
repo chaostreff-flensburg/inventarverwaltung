@@ -19,9 +19,9 @@
         <tbody>
             @foreach($items as $item)
             <tr>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $item->item->name }}</td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $item->item->name }}</td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"></span></td>
+                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $item->itemname }}</td>
+                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $item->identifier }}</td>
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{{ $item->storagename }}</span></td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                     Checkout
