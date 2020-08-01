@@ -7,6 +7,8 @@ use App\Models\Itementity;
 use App\Models\Item;
 use App\Models\People;
 use App\Models\Storagelocation;
+use App\Models\Tag;
+use App\Models\TagItementity;
 
 class TestController extends Controller
 {
@@ -46,5 +48,20 @@ class TestController extends Controller
         $itementity2->amount = 0;
         $itementity2->storagelocation_id = $storage1->id;
         $itementity2->save();
+        // Tags
+        $tag1 = new Tag();
+        $tag1->name = "Cool";
+        $tag1->save();
+        $tag2 = new Tag();
+        $tag2->name = "Essbar";
+        $tag2->save();
+        $tagentity1 = new TagItementity();
+        $tagentity1->tag_id = $tag1->id;
+        $tagentity1->itementity_id = $itementity2->id;
+        $tagentity1->save();
+        $tagentity2 = new TagItementity();
+        $tagentity2->tag_id = $tag2->id;
+        $tagentity2->itementity_id = $itementity1->id;
+        $tagentity2->save();
     }
 }
