@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'InventoryController@index');
+Route::get('/init', 'TestController@init');
 
 Route::get('/item/create', 'InventoryController@createItemForm')->name('createItem');
 Route::post('/item/create', 'InventoryController@createItem')->name('createItemPost');

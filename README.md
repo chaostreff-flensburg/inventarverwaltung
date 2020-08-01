@@ -25,3 +25,38 @@ To expose a port to your host add an docker-compose.override.yml like this one:
         ports:
             - 8080:80
 
+## Hosting with docker-compose
+
+#### docker-compose.yml
+
+    version: '3.3'
+
+    networks:
+    web:
+        external: true
+
+    services:
+        application:
+            image: ctfl/inventarverwaltung
+            networks:
+                - web
+            extra_hosts:
+                - 'inventar.chaostreff-flensburg.de:127.0.0.1'
+            labels:
+                - "traefik.enable=true"
+                - "traefik.backend=inventar"
+                - "traefik.frontend.rule=Host:inventar.chaostreff-flensburg.de"
+                - "traefik.docker.network=web"
+                - "traefik.port=80""
+            working_dir: /var/www/html
+            volumes:
+                - ./:/var/www/html/storage/app
+            restart: always
+            enviroment:
+                - ./env
+
+
+- Create env file like .env.example
+- startup container
+- crate APP_KEY width
+- magrate database
