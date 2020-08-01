@@ -42,7 +42,7 @@
 
             <div class="w-full lg:w-1/5 px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <div class="font-bold block lg:hidden mb-2">Ausgeliehen von</div>
-                Ausgeliehen von
+                {{ $item->borrowed_by }}
             </div>
             <div class="w-full lg:w-1/5 px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
                 <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
