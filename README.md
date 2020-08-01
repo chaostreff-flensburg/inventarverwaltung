@@ -1,3 +1,9 @@
+## Seeddaten
+
+```bash
+php artisan migrate:fresh --seed
+```
+
 ## Development with Docker
 To Develop with docker under linux you have to Export your user-id and group-id by adding th following to your bashrc
 
