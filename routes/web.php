@@ -13,4 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'ItementityController@index');
+Route::get('/', 'InventoryController@index');
