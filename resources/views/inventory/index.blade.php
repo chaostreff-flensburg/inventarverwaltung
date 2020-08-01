@@ -27,9 +27,9 @@
             <div class="w-1/5 px-5 py-5 border-b border-gray-200 bg-white text-sm lg:hidden font-bold">
                 Tags
             </div>
-            <div class="w-4/5 lg:w-1/5 px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <div class="w-4/5 lg:w-1/5 px-5 pt-5 pb-3 border-b border-gray-200 bg-white text-sm">
                 @foreach($item->tags as $tag)
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{{ $tag->name }}</span>
+                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{ $tag->name }}</span>
                 @endforeach
             </div>
 
