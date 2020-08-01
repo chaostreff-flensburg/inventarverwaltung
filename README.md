@@ -32,8 +32,8 @@ To expose a port to your host add an docker-compose.override.yml like this one:
     version: '3.3'
 
     networks:
-    web:
-        external: true
+        web:
+            external: true
 
     services:
         application:
