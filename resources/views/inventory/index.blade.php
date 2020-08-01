@@ -3,25 +3,35 @@
 @section('content')
 <div class="mx-10 lg:mx-auto">
     <h1 class="text-2xl mb-8 text-gray-600">Inventarverwaltung</h1>
-    <div class="flex justify-between">
+    <div class="lg:flex justify-between">
         <div class="text-gray-700 text-center">
-            <div class="shadow mb-10 bg-white rounded-md">
-                <input type="text" placeholder="Suche..." class="focus:outline-none border border-transparent px-4 py-2 leading-normal text-gray-700 bg-white" >
-                @foreach($tags as $tag)
-                    <a href="{{ route('listItementities', ['tag' => array_diff($currentSelectedTags, [$tag->id])]) }}" class="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 hover:bg-red-600 hover:text-gray-200">
-                        {{ $tag->name }}
-                        <span class="font-normal">x</span>
-                    </a>
+            <form action="{{ route('listItementities') }}" method="GET" role="search">
+                {{csrf_field()}}
+                @foreach($selectedTagIds as $tag)
+                    <input type="hidden" name="tag[]" value="{{$tag}}">
                 @endforeach
-                @foreach($storagelocations as $location)
-                    <a href="{{ route('listItementities', ['location' => array_diff($currentSelectedStoragelocations, [$location->id])]) }}" class="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 hover:bg-red-600 hover:text-gray-200">
-                        {{ $location->name }}
-                        <span class="font-normal">x</span>
-                    </a>
+                @foreach($selectedLocationIds as $location)
+                    <input type="hidden" name="location[]" value="{{$location}}">
                 @endforeach
-            </div>
+
+                <div class="shadow mb-10 bg-white rounded-md">
+                    <input type="text" value="{{ $search }}" placeholder="Suche..." name="search" class="focus:outline-none border border-transparent px-4 py-2 leading-normal text-gray-700 bg-white" >
+                    @foreach($selectedTags as $tag)
+                        <a href="{{ route('listItementities', ['tag' => array_diff($selectedTagIds, [$tag->id]), 'location' => $selectedLocationIds]) }}" class="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 hover:bg-red-600 hover:text-gray-200">
+                            {{ $tag->name }}
+                            <span class="font-normal">x</span>
+                        </a>
+                    @endforeach
+                    @foreach($selectedLocations as $location)
+                        <a href="{{ route('listItementities', ['location' => array_diff($selectedLocationIds, [$location->id]), 'tag' => $selectedTagIds]) }}" class="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 hover:bg-red-600 hover:text-gray-200">
+                            {{ $location->name }}
+                            <span class="font-normal">x</span>
+                        </a>
+                    @endforeach
+                </div>
+            </form>
         </div>
-        <div class="text-gray-700 text-center"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Neues Item</button></div>
+        <div class="text-gray-700 text-center mb-10"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Neues Item</button></div>
     </div>
     <div class="rounded overflow-hidden lg:shadow lg:bg-white mb-20">
         <div class="flex flex-wrap">
@@ -32,25 +42,25 @@
             <div class="w-full hidden lg:block lg:w-1/6 px-5 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Ausgeliehen von</div>
             <div class="w-full hidden lg:block lg:w-1/6 px-5 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"></div>
         </div>
-        @foreach($items as $item)
+        @foreach($itemEntities as $itemEntity)
         <div class="flex flex-wrap mb-5 lg:mb-0">
             <div class="w-full lg:w-1/6 border-b border-gray-200 bg-white text-sm overflow-hidden">
-                <img class="w-full" src="{{ URL::asset('storage/images/' . $item->displayImage) }}" alt="{{ $item->itemname }}">
+                <img class="w-full" src="{{ URL::asset('storage/images/' . $itemEntity->displayImage) }}" alt="{{ $itemEntity->itemname }}">
             </div>
 
             <div class="w-2/6 px-5 py-5 border-b border-gray-200 bg-white text-sm lg:hidden font-bold">
                 Name
             </div>
             <div class="w-4/6 lg:w-1/6 px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                <div class="font-semibold text-gray-700">{{ $item->identifier }}</div>{{ $item->item->name }}
+                <div class="font-semibold text-gray-700">{{ $itemEntity->identifier }}</div>{{ $itemEntity->item->name }}
             </div>
 
             <div class="w-2/6 px-5 py-5 border-b border-gray-200 bg-white text-sm lg:hidden font-bold">
                 Tags
             </div>
             <div class="w-4/6 lg:w-1/6 px-5 pt-5 pb-3 border-b border-gray-200 bg-white text-sm">
-                @foreach($item->tags as $tag)
-                    <a href="{{ route('listItementities', ['tag' => array_merge($currentSelectedTags, [$tag->id]), 'location' => $currentSelectedStoragelocations]) }}" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 hover:bg-teal-400">{{ $tag->name }}</a>
+                @foreach($itemEntity->tags as $tag)
+                    <a href="{{ route('listItementities', ['tag' => array_merge($selectedTagIds, [$tag->id]), 'location' => $selectedLocationIds]) }}" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 hover:bg-teal-400">{{ $tag->name }}</a>
                 @endforeach
             </div>
 
@@ -58,12 +68,12 @@
                 Ort
             </div>
             <div class="w-4/6 lg:w-1/6 px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                <a href="{{ route('listItementities', ['tag' => $currentSelectedTags, 'location' => array_merge($currentSelectedStoragelocations, [$item->storagelocation->id])]) }}" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{{ $item->storagelocation->name }}</a>
+                <a href="{{ route('listItementities', ['tag' => $selectedTagIds, 'location' => array_merge($selectedLocationIds, [$itemEntity->storagelocation->id])]) }}" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{{ $itemEntity->storagelocation->name }}</a>
             </div>
 
             <div class="w-full lg:w-1/6 px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <div class="font-bold block lg:hidden mb-2">Ausgeliehen von</div>
-                {{ $item->borrowed_by }}
+                {{ $itemEntity->borrowed_by ?: '—' }}
             </div>
             <div class="w-full lg:w-1/6 px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
                 <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">

@@ -9,7 +9,6 @@ use App\Models\Item;
 use App\Models\People;
 use App\Models\Storagelocation;
 use App\Models\Tag;
-use App\Models\TagItementity;
 
 class InventoryController extends Controller
 {
@@ -18,12 +17,27 @@ class InventoryController extends Controller
     {   
         $query = Itementity::with(['item', 'storagelocation', 'image', 'tags']);
 
+        $search = "";
+        if ($request->has('search') && is_string($request->search)) {
+            $search = $request->search;
+            $query->where(static function($query) use ($search) {
+                $query->orWhere('identifier', 'LIKE', '%'.$search.'%');
+                $query->orWhereHas('storagelocation', static function($query) use ($search) {
+                    return $query->where('name', 'LIKE', '%'.$search.'%');
+                });
+                $query->orWhereHas('item', static function($query) use ($search) {
+                    return $query->where('name', 'LIKE', '%'.$search.'%')
+                        ->orWhere('description', 'LIKE', '%'.$search.'%');
+                });
+            });
+        }
+
         // tags
-        $tags = collect([]);
-        $currentSelectedTags = [];
+        $selectedTags = collect([]);
+        $selectedTagIds = [];
         if ($request->has('tag') && is_array($request->tag)) {
-            $tags = Tag::whereIn('id', $request->tag)->get();
-            $currentSelectedTags = $tags->pluck('id')->toArray();
+            $selectedTags = Tag::whereIn('id', $request->tag)->get();
+            $selectedTagIds = $selectedTags->pluck('id')->toArray();
 
             $query->whereHas('tags', static function($query) use ($request) {
                 return $query->whereIn('tag_id', $request->tag);
@@ -31,20 +45,20 @@ class InventoryController extends Controller
         }
 
         // storagelocations
-        $storagelocations = collect([]);
-        $currentSelectedStoragelocations = [];
+        $selectedLocations = collect([]);
+        $selectedLocationIds = [];
         if ($request->has('location') && is_array($request->location)) {
-            $storagelocations = Storagelocation::whereIn('id', $request->location)->get();
-            $currentSelectedStoragelocations = $storagelocations->pluck('id')->toArray();
+            $selectedLocations = Storagelocation::whereIn('id', $request->location)->get();
+            $selectedLocationIds = $selectedLocations->pluck('id')->toArray();
 
             $query->whereHas('storagelocation', static function($query) use ($request) {
                 return $query->whereIn('storagelocation_id', $request->location);
             });
         }
 
-        $items = $query->get();
+        $itemEntities = $query->get();
 
-        return view('inventory.index', compact('items', 'tags', 'currentSelectedTags', 'storagelocations', 'currentSelectedStoragelocations'));
+        return view('inventory.index', compact('itemEntities', 'selectedTags', 'search', 'selectedTagIds', 'selectedLocations', 'selectedLocationIds'));
     }
 
     public function createItemForm()
