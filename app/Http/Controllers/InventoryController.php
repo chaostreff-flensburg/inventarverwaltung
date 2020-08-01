@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Itementity;
 use App\Models\Item;
 use App\Models\People;
+use App\Models\TagItementity;
 
 class InventoryController extends Controller
 {
@@ -16,7 +17,10 @@ class InventoryController extends Controller
         $items = Itementity::join('items', 'itementities.item_id', 'items.id')
                             ->join('storagelocations', 'itementities.storagelocation_id', 'storagelocations.id')
                             ->select('itementities.*', 'items.name as itemname', 'storagelocations.name as storagename')
-                            ->get();
+                            ->get()->map(function($item) {
+                                $item->tags = TagItementity::join('tags', 'tag_itementity.tag_id', 'tags.id')->where('tag_itementity.itementity_id', $item->id)->get();
+                                return $item;
+                            });
         return view('inventory.index', compact('items'));
     }
 
