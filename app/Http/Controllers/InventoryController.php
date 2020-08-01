@@ -7,16 +7,44 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Itementity;
 use App\Models\Item;
 use App\Models\People;
+use App\Models\Storagelocation;
+use App\Models\Tag;
 use App\Models\TagItementity;
 
 class InventoryController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {   
-        $items = Itementity::with(['item', 'storagelocation', 'image', 'tags'])->get();
+        $query = Itementity::with(['item', 'storagelocation', 'image', 'tags']);
 
-        return view('inventory.index', compact('items'));
+        // tags
+        $tags = collect([]);
+        $currentSelectedTags = [];
+        if ($request->has('tag') && is_array($request->tag)) {
+            $tags = Tag::whereIn('id', $request->tag)->get();
+            $currentSelectedTags = $tags->pluck('id')->toArray();
+
+            $query->whereHas('tags', static function($query) use ($request) {
+                return $query->whereIn('tag_id', $request->tag);
+            });
+        }
+
+        // storagelocations
+        $storagelocations = collect([]);
+        $currentSelectedStoragelocations = [];
+        if ($request->has('location') && is_array($request->location)) {
+            $storagelocations = Storagelocation::whereIn('id', $request->location)->get();
+            $currentSelectedStoragelocations = $storagelocations->pluck('id')->toArray();
+
+            $query->whereHas('storagelocation', static function($query) use ($request) {
+                return $query->whereIn('storagelocation_id', $request->location);
+            });
+        }
+
+        $items = $query->get();
+
+        return view('inventory.index', compact('items', 'tags', 'currentSelectedTags', 'storagelocations', 'currentSelectedStoragelocations'));
     }
 
     public function createItemForm()

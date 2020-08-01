@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'InventoryController@index');
+Route::get('/', 'InventoryController@index')->name('listItementities');
 Route::get('/init', 'TestController@init');
 
 Route::get('/item/create', 'InventoryController@createItemForm')->name('createItem');
