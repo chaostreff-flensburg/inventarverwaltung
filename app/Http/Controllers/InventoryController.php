@@ -16,4 +16,19 @@ class InventoryController extends Controller
                             ->get();
         return view('inventory.index', compact('items'));
     }
+
+    public function createItem(Request $request)
+    {
+
+    }
+
+    public function createItementity(Request $request)
+    {
+
+    }
+
+    public function createPerson(Request $request)
+    {
+
+    }
 }
