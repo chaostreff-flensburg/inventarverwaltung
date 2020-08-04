@@ -13,13 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'InventoryController@index')->name('listItementities');
+Route::get('/', 'InventoryController@index')->name('inventory.index');
 Route::get('/init', 'TestController@init');
 
-Route::get('/item/create', 'InventoryController@createItemForm')->name('createItem');
-Route::post('/item/create', 'InventoryController@createItem')->name('createItemPost');
-Route::get('/itementity/create', 'InventoryController@createItementityForm')->name('createItementity');
-Route::post('/itementity/create', 'InventoryController@createItementity')->name('createItementityPost');
-Route::get('/people/create', 'InventoryController@createPeopleForm')->name('createPeople');
-Route::post('/people/create', 'InventoryController@createPeople')->name('createPeoplePost');
+Route::resource('items', 'ItemController')
+    ->except(['index', 'show']);
+Route::resource('itementities', 'ItementityController')->except(['index']);
+Route::resource('peoples', 'PeopleController');
 

@@ -33,7 +33,7 @@
             </div>
             <div class="w-4/6 lg:w-1/6 px-5 pt-5 pb-3 border-b border-gray-200 bg-white text-sm">
                 @foreach($itemEntity->tags as $tag)
-                    <a href="{{ route('listItementities', ['tag' => array_merge($selectedTagIds, [$tag->id]), 'location' => $selectedLocationIds]) }}" class="tag">{{ $tag->name }}</a>
+                    <a href="{{ route('inventory.index', ['tag' => array_merge($selectedTagIds, [$tag->id]), 'location' => $selectedLocationIds]) }}" class="tag">{{ $tag->name }}</a>
                 @endforeach
             </div>
 
@@ -41,7 +41,7 @@
                 Ort
             </div>
             <div class="w-4/6 lg:w-1/6 px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                <a href="{{ route('listItementities', ['tag' => $selectedTagIds, 'location' => array_merge($selectedLocationIds, [$itemEntity->storagelocation->id])]) }}" class="tag">{{ $itemEntity->storagelocation->name }}</a>
+                <a href="{{ route('inventory.index', ['tag' => $selectedTagIds, 'location' => array_merge($selectedLocationIds, [$itemEntity->storagelocation->id])]) }}" class="tag">{{ $itemEntity->storagelocation->name }}</a>
             </div>
 
             <div class="w-full lg:w-1/6 px-5 py-5 border-b border-gray-200 bg-white text-sm">
