@@ -26,5 +26,5 @@
             </div>
         </form>
     </div>
-    <div class="text-gray-700 text-center mb-10"><button class="btn">Neues Item</button></div>
+    <div class="text-gray-700 text-center mb-10"><a href="{{ route('items.create') }}" class="btn">Neues Item</a> <a href="{{ route('itementities.create') }}" class="btn">Neue Entity</a></div>
 </div>

@@ -28,25 +28,21 @@ class ItemController extends Controller
     {
         // Validate Stuff
         $validator = Validator::make($request->all(), [
-            'title' => 'required|unique:items|max:191',
+            'name' => 'required|unique:items|max:191',
             'description' => 'nullable',
             'image_id' => 'nullable|exists:App\Models\Image,id'
         ]);
         // onError
         if ($validator->fails()) {
-            return redirect(route('createItem'))
+            return redirect(route('items.create'))
                         ->withErrors($validator)
                         ->withInput();
         }
 
         // Create new Item
-        $item = new Item;
-        $item->name = $request->title;
-        if(isset($request->description))
-            $item->description = $request->description;
-        if(isset($request->image_id))
-            $item->image_id = $request->image_id;
-        // Redirect to ItemList with done msg
+        $item = new Item($request->all());
+        $item->save();
+
         return redirect(route('inventory.index'))->with('status', __('app.done'));
     }
 
@@ -83,4 +79,5 @@ class ItemController extends Controller
     {
         //
     }
+
 }
