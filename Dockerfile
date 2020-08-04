@@ -42,7 +42,7 @@ RUN apt-get install -y nodejs
 RUN apachectl restart
 
 # Install application
-RUN composer install --optimize-autoloader --no-suggest --no-interaction --no-dev --no-scripts
+RUN composer install --optimize-autoloader --no-suggest --no-interaction
 RUN npm install
 RUN npm run production
 
