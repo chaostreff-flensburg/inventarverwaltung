@@ -42,9 +42,11 @@ RUN apt-get install -y nodejs
 RUN apachectl restart
 
 # Install application
-RUN composer install
+RUN composer install --optimize-autoloader --no-suggest --no-interaction --no-dev --no-scripts
 RUN npm install
 RUN npm run production
 
-ENTRYPOINT [ "entrypoint.sh" ]
-
+# Set permissions
+RUN chown -R www-data:www-data \
+    /var/www/storage \
+    /var/www/bootstrap/cache
