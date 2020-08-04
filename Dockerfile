@@ -48,5 +48,5 @@ RUN npm run production
 
 # Set permissions
 RUN chown -R www-data:www-data \
-    /var/www/storage \
-    /var/www/bootstrap/cache
+    /var/www/html/storage \
+    /var/www/html/bootstrap/cache
