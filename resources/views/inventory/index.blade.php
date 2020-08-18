@@ -49,6 +49,14 @@
                 {{ $itemEntity->borrowed_by ?: '—' }}
             </div>
             <div class="w-full lg:w-1/6 px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
+                <a href="{{ route('items.edit', ['item' => $itemEntity->item->id]) }}" class="btn btn__negative">
+                    Update Item
+                </a>
+                <form action="{{ route('items.destroy', ['item' => $itemEntity->item->id]) }}" method="POST">
+                    {!! csrf_field() !!}
+                    <input type="hidden" name="_method" value="DELETE"/>
+                    <input type="submit" class="btn btn__negative" value="Delete Item"/>
+                </form>
                 <button class="btn btn__negative">
                     Checkout
                 </button>
