@@ -53,7 +53,7 @@ class InventoryController extends Controller
             });
         }
 
-        $itemEntities = $query->paginate(2);
+        $itemEntities = $query->paginate(10);
 
         return view('inventory.index', compact('itemEntities', 'selectedTags', 'search', 'selectedTagIds', 'selectedLocations', 'selectedLocationIds'));
     }
