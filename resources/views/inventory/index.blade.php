@@ -65,9 +65,10 @@
         @endforeach
         <div class="table__footer">
             <div class="flex justify-between">
-                <div class="table__footer__column">Zurück</div>
+<!--                <div class="table__footer__column">Zurück</div>
                 <div class="table__footer__column">2</div>
-                <div class="table__footer__column">Weiter</div>
+                <div class="table__footer__column">Weiter</div>-->
+                {{ $itemEntities->withQueryString()->links() }}
             </div>
         </div>
     </div>
