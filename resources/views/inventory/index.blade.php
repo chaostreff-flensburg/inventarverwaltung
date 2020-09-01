@@ -4,6 +4,8 @@
 <div class="mx-10 lg:mx-auto">
     <h1 class="headline">Inventarverwaltung</h1>
 
+    <livewire:inventory.search />
+
     @include('inventory.searchform')
 
     <div class="rounded overflow-hidden lg:shadow lg:bg-white mb-20">
