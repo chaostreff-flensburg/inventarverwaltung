@@ -41,6 +41,7 @@
                 {{ $itemEntity->status }}
             </div>
             <div class="table--cell">
+                <div class="table--inline-head">Tags</div>
                 @foreach($itemEntity->tags as $tag)
                 <a wire:click="addTag({{ $tag->id }})" class="tag">
                     {{ $tag->name }}
@@ -48,6 +49,7 @@
                 @endforeach
             </div>
             <div class="table--cell">
+                <div class="table--inline-head">Storagelocation</div>
                 <a wire:click="addLocation({{ $itemEntity->storagelocation->id }})" class="tag">
                     {{ $itemEntity->storagelocation->name }}
                 </a>

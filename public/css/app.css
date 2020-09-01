@@ -83,7 +83,7 @@ h2 {
   background: #e8daff;
   font-size: 0.75rem;
   display: inline-block;
-  margin: 0.25rem;
+  margin: 0.25rem 0.25rem 0 0;
   padding: 0.25rem 0.5rem;
   cursor: pointer;
 }
@@ -146,8 +146,14 @@ h2 {
 }
 
 .table .table--row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-bottom: 2rem;
+}
+@media (min-width: 600px) {
+  .table .table--row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-bottom: 0;
+  }
 }
 .table .table--row .table--cell {
   border-top: 1px solid #e0e0e0;
@@ -155,10 +161,26 @@ h2 {
   color: #525252;
   padding: 1rem;
 }
+.table .table--row .table--cell .table--inline-head {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+@media (min-width: 600px) {
+  .table .table--row .table--cell .table--inline-head {
+    display: none;
+  }
+}
 .table .table--row .table--cell.table--head {
   color: #161616;
   background-color: #e0e0e0;
   font-weight: 600;
+  display: none;
+}
+@media (min-width: 600px) {
+  .table .table--row .table--cell.table--head {
+    display: block;
+  }
 }
 
 .pagination {
