@@ -1,27 +1,24 @@
 <div>
-    <a href="{{ route('item.create') }}" class="btn">Neues Item</a>
-    <a href="{{ route('itementity.create') }}" class="btn">Neues Itementity</a>
-
-    <input wire:model.debounce.500ms="search" type="text">
-    <p>
-        Suche aktuell: {{ $search }}
-    </p>
-    <p>
-    @foreach($selectedTags as $tag)
-        <a wire:click="removeTag({{ $tag->id }})" class="tag">
-            {{ $tag->name }}
-            <span class="font-normal">x</span>
-        </a>
-    @endforeach
-    </p>
-    <p>
-    @foreach($selectedLocations as $location)
-        <a wire:click="removeLocation({{ $location->id }})" class="tag">
-            {{ $location->name }}
-            <span class="font-normal">x</span>
-        </a>
-    @endforeach
-    </p>
+    <div class="form-container">
+        <form>
+            <legend>Search</legend>
+            <input wire:model.debounce.500ms="search" type="text">
+            <p>
+            @foreach($selectedTags as $tag)
+                <a wire:click="removeTag({{ $tag->id }})" class="tag">
+                    {{ $tag->name }}
+                    <span class="font-normal">x</span>
+                </a>
+            @endforeach
+            @foreach($selectedLocations as $location)
+                <a wire:click="removeLocation({{ $location->id }})" class="tag">
+                    {{ $location->name }}
+                    <span class="font-normal">x</span>
+                </a>
+            @endforeach
+            </p>
+        </form>
+    </div>
 
     @foreach ($itemEntities as $itemEntity)
         <div>

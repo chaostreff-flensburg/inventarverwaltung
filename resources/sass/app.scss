@@ -1,1 +1,102 @@
-@import 'reset'
+@import 'reset';
+
+body {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.btn {
+    border: 0;
+    background: #0f62fe;
+    font-size: .875rem;
+    padding: .875rem;
+    color: #ffffff;
+    transition: all 70ms cubic-bezier(0,0,.38,.9);
+
+    &:hover, &:focus {
+        background: #0353e9;
+    }
+}
+
+.tag {
+    border-radius: 5px;
+    color: #6929c4;
+    background: #e8daff;
+    font-size: .75rem;
+    display: inline-block;
+    margin: .25rem;
+    padding: .25rem .5rem;
+    cursor: pointer;
+
+    &:hover, &:focus {
+        color: #0e6027;
+        background: #a7f0ba;
+    }
+}
+
+.header {
+    background: #161616;
+    z-index: 99999;
+    color: #ffffff;
+    font-size: .75rem;
+    padding: 1rem 1rem;
+    margin-bottom: 2rem;
+
+    .logo {
+        font-size: 1rem;
+    }
+
+    a {
+        color: #ffffff;
+        margin-right: 3rem;
+    }
+}
+
+.form-container {
+    padding: 20px;
+
+    form {
+        max-width: 650px;
+        margin: 0 auto;
+
+        fieldset {
+            margin-bottom: 2rem;
+        }
+
+        legend {
+            font-size: .75rem;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            font-size: .875rem;
+            color: #161616;
+            background: #f4f4f4;
+            border: 0;
+            border-bottom: 1px solid #8d8d8d;
+            height: 2.5rem;
+            padding: 0 1rem;
+
+            &:focus {
+                outline: none;
+            }
+        }
+        
+        input {
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .helper-text {
+            font-size: .75rem;
+            margin-top: .25rem;
+
+            .error {
+                color: #da1e28;
+            }
+        }
+    }
+}

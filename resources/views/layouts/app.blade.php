@@ -1,8 +1,13 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @include('layouts.head')
-<body class="bg-gray-200">
-    <div id="app" class="lg:container mx-auto mt-20">
+<body>
+    <header class="header">
+        <a href="{{ route('inventory.search') }}" class="logo">Inventory System</a>
+        <a href="{{ route('item.create') }}">Neues Item</a>
+        <a href="{{ route('itementity.create') }}">Neues Itementity</a>
+    </header>
+    <div id="app">
         @yield('content')
     </div>
     @include('layouts.footer')

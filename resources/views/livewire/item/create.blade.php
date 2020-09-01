@@ -1,11 +1,21 @@
-<div>
+<div class="form-container">
     <form wire:submit.prevent="saveItem">
-        <input type="text" wire:model.debounce.500ms="name">
-        @error('name') <span class="error">{{ $message }}</span> @enderror
+        <fieldset>
+            <legend>Name</legend>
+            <input type="text" wire:model.debounce.500ms="name">
+            <div class="helper-text">
+                @error('name') <span class="error">{{ $message }}</span> @enderror
+            </div>
+        </fieldset>
 
-        <input type="text" wire:model.debounce.500ms="description">
-        @error('description') <span class="error">{{ $message }}</span> @enderror
+        <fieldset>
+            <legend>Description</legend>
+            <input type="text" wire:model.debounce.500ms="description">
+            <div class="helper-text">
+                @error('description') <span class="error">{{ $message }}</span> @enderror
+            </div>
+        </fieldset>
 
-        <button type="submit">Save Item</button>
+        <button type="submit" class="btn">Save Item</button>
     </form>
 </div>

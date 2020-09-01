@@ -51,3 +51,92 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+body {
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn {
+  border: 0;
+  background: #0f62fe;
+  font-size: 0.875rem;
+  padding: 0.875rem;
+  color: #ffffff;
+  transition: all 70ms cubic-bezier(0, 0, 0.38, 0.9);
+}
+.btn:hover, .btn:focus {
+  background: #0353e9;
+}
+
+.tag {
+  border-radius: 5px;
+  color: #6929c4;
+  background: #e8daff;
+  font-size: 0.75rem;
+  display: inline-block;
+  margin: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+}
+.tag:hover, .tag:focus {
+  color: #0e6027;
+  background: #a7f0ba;
+}
+
+.header {
+  background: #161616;
+  z-index: 99999;
+  color: #ffffff;
+  font-size: 0.75rem;
+  padding: 1rem 1rem;
+  margin-bottom: 2rem;
+}
+.header .logo {
+  font-size: 1rem;
+}
+.header a {
+  color: #ffffff;
+  margin-right: 3rem;
+}
+
+.form-container {
+  padding: 20px;
+}
+.form-container form {
+  max-width: 650px;
+  margin: 0 auto;
+}
+.form-container form fieldset {
+  margin-bottom: 2rem;
+}
+.form-container form legend {
+  font-size: 0.75rem;
+  margin-bottom: 8px;
+}
+.form-container form input, .form-container form select {
+  font-size: 0.875rem;
+  color: #161616;
+  background: #f4f4f4;
+  border: 0;
+  border-bottom: 1px solid #8d8d8d;
+  height: 2.5rem;
+  padding: 0 1rem;
+}
+.form-container form input:focus, .form-container form select:focus {
+  outline: none;
+}
+.form-container form input {
+  box-sizing: border-box;
+  width: 100%;
+}
+.form-container form .helper-text {
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+.form-container form .helper-text .error {
+  color: #da1e28;
+}
