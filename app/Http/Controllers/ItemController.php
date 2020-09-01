@@ -32,6 +32,7 @@ class ItemController extends Controller
             'description' => 'nullable',
             'image_id' => 'nullable|exists:App\Models\Image,id'
         ]);
+
         // onError
         if ($validator->fails()) {
             return redirect(route('items.create'))
@@ -66,7 +67,26 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        // Validate Stuff
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|unique:items|max:191',
+            'description' => 'nullable',
+            'image_id' => 'nullable|exists:App\Models\Image,id'
+        ]);
+
+        // onError
+        if ($validator->fails()) {
+            return redirect(route('items.update'))
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        // Create new Item
+        $item->name = $request->get('name');
+        $item->description = $request->get('description');
+        $item->save();
+
+        return redirect(route('inventory.index'))->with('status', __('app.done'));
     }
 
     /**
@@ -77,7 +97,10 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        //
+        $item->entities()->delete();
+        $item->delete();
+
+        return back()->withInput()->with('status', __('app.done'));
     }
 
 }

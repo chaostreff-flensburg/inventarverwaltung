@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use App\Models\Itementity;
-use App\Models\People;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,7 +16,11 @@ class ItementityController extends Controller
      */
     public function create()
     {
-        return view('itementity.edit');
+        $items = Item::all();
+
+        return view('itementity.edit', [
+            'items' => $items,
+        ]);
     }
 
     /**
