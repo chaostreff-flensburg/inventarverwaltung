@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Itementity extends Model
 {
+    public $fillable = [
+        'identifier',
+        'item_id',
+        'consumable',
+        'amount',
+        'storagelocation_id',
+    ];
+
     //
     public function tags()
     {

@@ -12,9 +12,9 @@ $factory->define(Itementity::class, function (Faker $faker) {
     return [
         'identifier' => 'ctfl-' . substr($faker->uuid, 0, 12),
         'status' => $status,
-        'borrowed_by' => ($status > 1)?$faker->name():'',
+        'borrowed_by' => ($status > 1)?$faker->name():null,
         'consumable' => ($isConsumable)?1:0,
-        'amount' => ($isConsumable)?$faker->randomNumber():0,
+        'amount' => ($isConsumable)?$faker->randomNumber():null,
         'storagelocation_id' => Storagelocation::inRandomOrder()->first()->id,
     ];
 });

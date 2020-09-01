@@ -1,4 +1,7 @@
 <div>
+    <a href="{{ route('item.create') }}" class="btn">Neues Item</a>
+    <a href="{{ route('itementity.create') }}" class="btn">Neues Itementity</a>
+
     <input wire:model.debounce.500ms="search" type="text">
     <p>
         Suche aktuell: {{ $search }}
