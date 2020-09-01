@@ -60,6 +60,11 @@ a {
   text-decoration: none;
 }
 
+h2 {
+  font-size: 1.25rem;
+  margin-bottom: 3rem;
+}
+
 .btn {
   border: 0;
   background: #0f62fe;
@@ -103,13 +108,12 @@ a {
   margin-right: 3rem;
 }
 
-.form-container {
-  padding: 20px;
-}
-.form-container form {
+.container {
   max-width: 650px;
   margin: 0 auto;
+  padding: 20px;
 }
+
 .form-container form fieldset {
   margin-bottom: 2rem;
 }
@@ -139,4 +143,34 @@ a {
 }
 .form-container form .helper-text .error {
   color: #da1e28;
+}
+
+.table .table--row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.table .table--row .table--cell {
+  border-top: 1px solid #e0e0e0;
+  background: #f4f4f4;
+  color: #525252;
+  padding: 1rem;
+}
+.table .table--row .table--cell.table--head {
+  color: #161616;
+  background-color: #e0e0e0;
+  font-weight: 600;
+}
+
+.pagination {
+  background: #f4f4f4;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+}
+.pagination li {
+  display: inline-block;
+}
+.pagination .page-item {
+  font-size: 0.875rem;
+  padding: 1rem;
 }

@@ -1,4 +1,6 @@
-<div class="form-container">
+<div class="form-container container">
+    <h2>Create Itementity</h2>
+
     <form wire:submit.prevent="saveEntity">
         <fieldset>
             <legend>Identifier</legend>

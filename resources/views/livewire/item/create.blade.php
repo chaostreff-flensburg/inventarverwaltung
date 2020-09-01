@@ -1,4 +1,6 @@
-<div class="form-container">
+<div class="form-container container">
+    <h2>Create Item</h2>
+
     <form wire:submit.prevent="saveItem">
         <fieldset>
             <legend>Name</legend>
