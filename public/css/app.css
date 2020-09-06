@@ -114,14 +114,14 @@ h2 {
   padding: 20px;
 }
 
-.form-container form fieldset {
+.form-container fieldset {
   margin-bottom: 2rem;
 }
-.form-container form legend {
+.form-container legend {
   font-size: 0.75rem;
   margin-bottom: 8px;
 }
-.form-container form input, .form-container form select {
+.form-container input, .form-container select {
   font-size: 0.875rem;
   color: #161616;
   background: #f4f4f4;
@@ -130,18 +130,18 @@ h2 {
   height: 2.5rem;
   padding: 0 1rem;
 }
-.form-container form input:focus, .form-container form select:focus {
+.form-container input:focus, .form-container select:focus {
   outline: none;
 }
-.form-container form input {
+.form-container input {
   box-sizing: border-box;
   width: 100%;
 }
-.form-container form .helper-text {
+.form-container .helper-text {
   font-size: 0.75rem;
   margin-top: 0.25rem;
 }
-.form-container form .helper-text .error {
+.form-container .helper-text .error {
   color: #da1e28;
 }
 

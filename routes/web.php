@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::livewire('/', 'inventory.search')->name('inventory.search');
 Route::livewire('/item/create', 'item.create')->name('item.create');
 Route::livewire('/itementity/create', 'itementity.create')->name('itementity.create');
+Route::livewire('/itementity/{itementity}', 'itementity.show')->name('itementity.show');

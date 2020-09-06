@@ -67,42 +67,40 @@ h2 {
 }
 
 .form-container {
-    form {
-        fieldset {
-            margin-bottom: 2rem;
+    fieldset {
+        margin-bottom: 2rem;
+    }
+
+    legend {
+        font-size: .75rem;
+        margin-bottom: 8px;
+    }
+
+    input, select {
+        font-size: .875rem;
+        color: #161616;
+        background: #f4f4f4;
+        border: 0;
+        border-bottom: 1px solid #8d8d8d;
+        height: 2.5rem;
+        padding: 0 1rem;
+
+        &:focus {
+            outline: none;
         }
+    }
+    
+    input {
+        box-sizing: border-box;
+        width: 100%;
+    }
 
-        legend {
-            font-size: .75rem;
-            margin-bottom: 8px;
-        }
+    .helper-text {
+        font-size: .75rem;
+        margin-top: .25rem;
 
-        input, select {
-            font-size: .875rem;
-            color: #161616;
-            background: #f4f4f4;
-            border: 0;
-            border-bottom: 1px solid #8d8d8d;
-            height: 2.5rem;
-            padding: 0 1rem;
-
-            &:focus {
-                outline: none;
-            }
-        }
-        
-        input {
-            box-sizing: border-box;
-            width: 100%;
-        }
-
-        .helper-text {
-            font-size: .75rem;
-            margin-top: .25rem;
-
-            .error {
-                color: #da1e28;
-            }
+        .error {
+            color: #da1e28;
         }
     }
 }

@@ -2,26 +2,24 @@
     <h2>Itementities</h2>
 
     <div class="form-container">
-        <form>
-            <fieldset>
-                <legend>Search</legend>
-                <input wire:model.debounce.500ms="search" type="text">
-                <p>
-                @foreach($selectedTags as $tag)
-                    <a wire:click="removeTag({{ $tag->id }})" class="tag">
-                        {{ $tag->name }}
-                        <span class="font-normal">x</span>
-                    </a>
-                @endforeach
-                @foreach($selectedLocations as $location)
-                    <a wire:click="removeLocation({{ $location->id }})" class="tag">
-                        {{ $location->name }}
-                        <span class="font-normal">x</span>
-                    </a>
-                @endforeach
-                </p>
-            </fieldset>
-        </form>
+        <fieldset>
+            <legend>Search</legend>
+            <input wire:model.debounce.500ms="search" type="text">
+            <p>
+            @foreach($selectedTags as $tag)
+                <a wire:click="removeTag({{ $tag->id }})" class="tag">
+                    {{ $tag->name }}
+                    <span class="font-normal">x</span>
+                </a>
+            @endforeach
+            @foreach($selectedLocations as $location)
+                <a wire:click="removeLocation({{ $location->id }})" class="tag">
+                    {{ $location->name }}
+                    <span class="font-normal">x</span>
+                </a>
+            @endforeach
+            </p>
+        </fieldset>
     </div>
 
     <div class="table">
@@ -34,7 +32,9 @@
     @foreach ($itemEntities as $itemEntity)
         <div class="table--row">
             <div class="table--cell">
-                <div>{{ $itemEntity->identifier }}</div>
+                <a href="{{ route('itementity.show', ['itementity' => $itemEntity ]) }}">
+                    {{ $itemEntity->identifier }}
+                </a><br />
                 {{ $itemEntity->item->name }}
             </div>
             <div class="table--cell">
