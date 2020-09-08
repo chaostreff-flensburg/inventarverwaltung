@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Itementity;
 
-use App\Models\Item;
 use App\Models\Itementity;
 use Livewire\Component;
 
@@ -15,15 +14,35 @@ class Show extends Component
         $this->entity = $itementity;
     }
 
+    public function lost() {
+        $this->entity->status = -1;
+        $this->entity->save();
+    }
+
+    public function checkout() {
+        $this->entity->status = 2;
+        $this->entity->save();
+    }
+
+    public function checkin() {
+        $this->entity->status = 1;
+        $this->entity->save();
+    }
+
+    public function pick() {
+        $this->entity->amount--;
+        $this->entity->save();
+    }
+
+    public function delete() {
+        $this->entity->delete();
+        return redirect()->route('inventory.search');
+    }
+
     public function render()
     {
-        $itementity = $this->entity;
-
         return view(
             'livewire.itementity.show',
-            compact([
-                'itementity',
-            ])
         );
     }
 }

@@ -24,6 +24,7 @@
 
     <div class="table">
         <div class="table--row">
+            <div class="table--cell table--head"></div>
             <div class="table--cell table--head">Identifier</div>
             <div class="table--cell table--head">Status</div>
             <div class="table--cell table--head">Tags</div>
@@ -31,6 +32,9 @@
         </div>
     @foreach ($itemEntities as $itemEntity)
         <div class="table--row">
+            <div class="table--cell table--select">
+                <input wire:model="selectedIds" value="{{ $itemEntity->id }}" type="checkbox">
+            </div>
             <div class="table--cell">
                 <a href="{{ route('itementity.show', ['itementity' => $itemEntity ]) }}">
                     {{ $itemEntity->identifier }}
@@ -38,7 +42,7 @@
                 {{ $itemEntity->item->name }}
             </div>
             <div class="table--cell">
-                {{ $itemEntity->status }}
+                {{ $itemEntity->display_status }}
             </div>
             <div class="table--cell">
                 <div class="table--inline-head">Tags</div>
@@ -59,4 +63,5 @@
     </div>
 
     {{ $itemEntities->links() }}
+
 </div>

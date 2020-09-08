@@ -15,6 +15,7 @@ class Search extends Component
     public $search = "";
     public $tag;
     public $location;
+    public $selectedIds = [];
 
     protected $updatesQueryString = ['search', 'tag', 'location'];
 
@@ -87,6 +88,8 @@ class Search extends Component
 
         $itemEntities = $query->paginate(10);
 
-        return view('livewire.inventory.search', compact(['itemEntities', 'selectedTags', 'selectedLocations']));
+        $selectedItementities = Itementity::whereIn('id', $this->selectedIds)->get();
+
+        return view('livewire.inventory.search', compact(['itemEntities', 'selectedTags', 'selectedLocations', 'selectedItementities']));
     }
 }
