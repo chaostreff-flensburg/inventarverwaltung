@@ -36,15 +36,15 @@
                 <input wire:model="selectedIds" value="{{ $itemEntity->id }}" type="checkbox">
             </div>
             <div class="table--cell">
-                <a href="{{ route('itementity.show', ['itementity' => $itemEntity ]) }}">
+                <a href="{{ route('itementity.show', ['itementity' => $itemEntity ]) }}" class="table--headline">
                     {{ $itemEntity->identifier }}
-                </a><br />
+                </a>
                 {{ $itemEntity->item->name }}
             </div>
             <div class="table--cell">
                 {{ $itemEntity->display_status }}
             </div>
-            <div class="table--cell">
+            <div class="table--cell table--small">
                 <div class="table--inline-head">Tags</div>
                 @foreach($itemEntity->tags as $tag)
                 <a wire:click="addTag({{ $tag->id }})" class="tag">
@@ -52,10 +52,17 @@
                 </a>
                 @endforeach
             </div>
-            <div class="table--cell">
+            <div class="table--cell table--small">
                 <div class="table--inline-head">Storagelocation</div>
                 <a wire:click="addLocation({{ $itemEntity->storagelocation->id }})" class="tag">
                     {{ $itemEntity->storagelocation->name }}
+                </a>
+            </div>
+            <div class="table--cell table--select">
+                <a href="{{ route('itementity.show', $itemEntity) }}">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                </svg>
                 </a>
             </div>
         </div>
