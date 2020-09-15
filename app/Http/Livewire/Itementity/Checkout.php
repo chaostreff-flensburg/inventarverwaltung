@@ -30,7 +30,7 @@ class Checkout extends Component
         $this->isCheckoutAllowed();
 
         $this->validateOnly($field, [
-            'borrowed_by' => 'min:2|unique:itementities',
+            'borrowed_by' => 'min:2',
         ]);
     }
 
@@ -39,7 +39,7 @@ class Checkout extends Component
         $this->isCheckoutAllowed();
 
         $validatedData = $this->validate([
-            'borrowed_by' => 'required|min:2|unique:itementities',
+            'borrowed_by' => 'required|min:2',
         ]);
 
         $this->entity->borrowed_by = $validatedData['borrowed_by'];
