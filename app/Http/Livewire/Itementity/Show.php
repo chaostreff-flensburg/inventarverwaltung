@@ -20,8 +20,7 @@ class Show extends Component
     }
 
     public function checkout() {
-        $this->entity->status = 2;
-        $this->entity->save();
+        return redirect()->route('itementity.checkout', $this->entity);
     }
 
     public function checkin() {

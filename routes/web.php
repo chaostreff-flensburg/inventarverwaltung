@@ -19,3 +19,4 @@ Route::livewire('/item/{item}', 'item.show')->name('item.show');
 Route::livewire('/itementity/create', 'itementity.create')->name('itementity.create');
 Route::livewire('/itementity/{itementity}', 'itementity.show')->name('itementity.show');
 Route::livewire('/itementity/{itementity}/refill', 'itementity.refill')->name('itementity.refill');
+Route::livewire('/itementity/{itementity}/checkout', 'itementity.checkout')->name('itementity.checkout');

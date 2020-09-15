@@ -39,7 +39,7 @@
     <fieldset>
     @if ($entity->consumable != 0)
     <a class="btn" wire:click="pick">Pick a Item</a>
-    <a class="btn" href="{{ route('itementity.refill', $entity->id) }}">Refill</a>
+    <a class="btn" href="{{ route('itementity.refill', $entity) }}">Refill</a>
     @else
         @if ($entity->status == 1)
             <a class="btn" wire:click="checkout">Checkout</a>
