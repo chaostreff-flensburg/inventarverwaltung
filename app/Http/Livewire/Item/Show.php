@@ -22,6 +22,12 @@ class Show extends Component
         return redirect()->route('inventory.search');
     }
 
+    public function edit() {
+        return redirect()->route('item.edit', [
+            'item' => $this->item,
+        ]);
+    }
+
     public function render()
     {
         return view(
