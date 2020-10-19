@@ -1,7 +1,7 @@
 <div class="form-container container">
     <h2>Edit Storagelocation</h2>
 
-    <form wire:submit.prevent="updateStorageLocation">
+    <form wire:submit.prevent="saveStoragelocation">
         <fieldset>
             <legend>Name</legend>
             <input type="text" wire:model.debounce.500ms="name">
@@ -18,6 +18,6 @@
             </div>
         </fieldset>
 
-        <button type="submit" class="btn">Update StorageLocation</button>
+        <button type="submit" class="btn">Update Storagelocation</button>
     </form>
 </div>

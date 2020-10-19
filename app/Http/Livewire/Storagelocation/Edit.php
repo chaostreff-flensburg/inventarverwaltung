@@ -7,8 +7,16 @@ use Livewire\Component;
 
 class Edit extends Component
 {
+    public $storagelocation;
     public $name;
     public $description;
+
+    public function mount(Storagelocation $storagelocation)
+    {
+        $this->storagelocation = $storagelocation;
+        $this->name = $storagelocation->name;
+        $this->description = $storagelocation->description;
+    }
 
     public function updated($field)
     {
@@ -18,16 +26,21 @@ class Edit extends Component
         ]);
     }
 
-    public function updateStorageLocation()
+    public function saveStoragelocation()
     {
         $validatedData = $this->validate([
             'name' => 'required|unique:storagelocations|min:2',
             'description' => 'required|string',
         ]);
 
-        Storagelocation::update($validatedData);
+        $this->storagelocation->name = $validatedData['name'];
+        $this->storagelocation->description = $validatedData['description'];
 
-        return redirect()->route('storagelocation.index');
+        $this->storagelocation->save();
+
+        return redirect()->route('storagelocation.show', [
+            'storagelocation' => $this->storagelocation,
+        ]);
     }
 
     public function render()
