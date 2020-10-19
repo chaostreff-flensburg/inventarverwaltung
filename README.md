@@ -21,14 +21,12 @@
 
 ## Requirements
 
-* Laravel 7.0 or newer
 * PHP 7.2.5 or newer
-* Livewire 1.3 or newer
 
 ## Seed data
 
-```
-php artisan migrate:fresh --seed
+```bash
+artisan migrate:fresh --seed
 ```
 
 ## Development with Docker
@@ -44,54 +42,46 @@ docker-compose exec tooling bash
 Run artisan commands in the application container and other commands like composer or npm in the tooling container.
 
 To expose a port to your host add an docker-compose.override.yml like this one:
-```
-version: '3.3'
+
+```yml
+version: '3.7'
 
 networks:
     web:
-        external: true
-    stack:
         external: false
 
     services:
         application:
             ports:
-                - 8080:80
+                - 8080:8080
 ```
 
 Run 
-```
+
+```bash
 docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 ```
 to execute both files.
 
 ### Setup
-* Create env file like .env.example
-* Startup container with `docker-compose up`
-* Go into the container with `docker-compose exec tooling bash`
-* If you want to use sqlite, create file with `touch ./storage/app/laravel.sqlite`
-* Type `composer install`
+
+* Create `.env`-file like .env.example
+* Startup container with `docker-compose up -d`
+* Go into the container with `docker-compose exec application bash`
 * Generate APP_KEY with `php artisan key:generate`
-* Migrate database
 
 ### Use with proxy
 
 When you use this with a proxy, you don't need the `docker-compose.override.yml`.
 
 ### Use with Linux
-To Develop with docker under linux you have to Export your user-id and group-id by adding th following to your bashrc
-```
-export USER_ID=$(id -u)
-```
 
-```
-export GROUP_ID=$(id -g)
-```
+To develop with docker under linux you have to add your user and group id to your `.env`-file.
 
 To access the container user the following command:
 
-```
-docker-compose exec --user ctfluser tooling bash
+```bash
+docker-compose exec --user www-data application bash
 ```
 
 ## License Information
