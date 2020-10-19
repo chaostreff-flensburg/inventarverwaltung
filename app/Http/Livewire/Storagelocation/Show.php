@@ -14,15 +14,24 @@ class Show extends Component
         $this->location = $location;
     }
 
-    public function edit() {
+    public function create()
+    {
+        return redirect()->route('storagelocation.create');
+    }
+
+    public function edit()
+    {
         return redirect()->route('storagelocation.edit', [
             'storagelocation' => $this->location
         ]);
     }
 
-    public function delete() {
+    public function delete()
+    {
         if (count($this->location->itementities)) {
-            session()->flash('message', 'Storage location contains item entities.');
+            session()->flash('message', 'Storage location cannot be deleted because it contains item entities.');
+
+            return;
         }
 
         $this->location->delete();

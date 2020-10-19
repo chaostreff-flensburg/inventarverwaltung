@@ -1,5 +1,9 @@
 <div class="container">
-    <h2>Storage Locations</h2>
+    <div class="flex-container space-evenly">
+        <h2>Storage Locations</h2>
+
+        <a class="btn" wire:click="create">Create</a>
+    </div>
 
     <div class="table">
         <div class="table--row">

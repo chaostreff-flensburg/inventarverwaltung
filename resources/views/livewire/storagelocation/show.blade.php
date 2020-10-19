@@ -19,30 +19,33 @@
         </div>
     @endif
 
-    <fieldset>
-        <legend>Item Entities</legend>
+    @if (count($location->itementities))
+        <fieldset>
+            <legend>Item Entities</legend>
 
-        <div class="table">
-            <div class="table--row">
-                <div class="table--cell table--head"></div>
-                <div class="table--cell table--head">Identifier</div>
-                <div class="table--cell table--head">Status</div>
-            </div>
-            @foreach($location->itementities as $itemEntity)
+            <div class="table">
                 <div class="table--row">
-                    <div class="table--cell table--select">
-                    </div>
-                    <div class="table--cell">
-                        <a href="{{ route('itementity.show', ['itementity' => $itemEntity ]) }}" class="table--headline">
-                            {{ $itemEntity->identifier }}
-                        </a>
-                        {{ $itemEntity->item->name }}
-                    </div>
-                    <div class="table--cell">
-                        {{ $itemEntity->display_status }}
-                    </div>
+                    <div class="table--cell table--head"></div>
+                    <div class="table--cell table--head">Identifier</div>
+                    <div class="table--cell table--head">Status</div>
                 </div>
-            @endforeach
-        </div>
-    </fieldset>
+                @foreach($location->itementities as $itemEntity)
+                    <div class="table--row">
+                        <div class="table--cell table--select">
+                        </div>
+                        <div class="table--cell">
+                            <a href="{{ route('itementity.show', ['itementity' => $itemEntity ]) }}" class="table--headline">
+                                {{ $itemEntity->identifier }}
+                            </a>
+                            {{ $itemEntity->item->name }}
+                        </div>
+                        <div class="table--cell">
+                            {{ $itemEntity->display_status }}
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </fieldset>
+    @endif
+
 </div>
