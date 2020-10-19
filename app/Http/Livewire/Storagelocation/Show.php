@@ -14,6 +14,12 @@ class Show extends Component
         $this->location = $location;
     }
 
+    public function edit() {
+        return redirect()->route('storagelocation.edit', [
+            'storagelocation' => $this->location
+        ]);
+    }
+
     public function delete() {
         if (count($this->location->itementities)) {
             session()->flash('message', 'Storage location contains item entities.');

@@ -9,9 +9,7 @@
 
     <fieldset>
         <a class="btn" wire:click="edit">Edit Item</a>
-    </fieldset>
 
-    <fieldset>
         <a class="btn" wire:click="delete">Delete Item</a>
     </fieldset>
 
