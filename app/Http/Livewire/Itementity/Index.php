@@ -19,7 +19,7 @@ class Index extends Component
 
     public function render()
     {
-        $itementities = Itementity::all();
+        $itementities = Itementity::with(['item', 'storagelocation', 'image', 'tags'])->get();
 
         return view(
             'livewire.itementity.index',

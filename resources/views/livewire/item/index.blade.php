@@ -25,7 +25,7 @@
                     {{ $item->description }}
                 </div>
                 <div class="table--cell">
-                    {{ $item->image->id }}
+                    {{ $item->display_image }}
                 </div>
             </div>
          @endforeach

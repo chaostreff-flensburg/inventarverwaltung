@@ -71,6 +71,10 @@ h2 {
   margin-bottom: 3rem;
 }
 
+.mt-2 {
+  margin-top: 2em;
+}
+
 .tag {
   border-radius: 5px;
   color: #ffffff;

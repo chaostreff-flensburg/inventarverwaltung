@@ -19,7 +19,7 @@ class Index extends Component
 
     public function render()
     {
-        $items = Item::all();
+        $items = Item::with('image')->get();
 
         return view(
             'livewire.item.index',

@@ -13,7 +13,6 @@ class Item extends Model
      */
     protected $fillable = ['name', 'description'];
 
-    //
     public function entities()
     {
         return $this->hasMany(Itementity::class);

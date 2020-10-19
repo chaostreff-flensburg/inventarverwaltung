@@ -25,6 +25,12 @@
                 </div>
                 <div class="table--cell">
                     {{ $itemEntity->display_status }}
+
+                    @if ($itemEntity->borrowed_by)
+                        <div class="mt-2">
+                            Borrowed by: {{ $itemEntity->borrowed_by }}
+                        </div>
+                    @endif
                 </div>
                 <div class="table--cell table--small">
                     <div class="table--inline-head">Tags</div>
