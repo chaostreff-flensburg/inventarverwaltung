@@ -49,13 +49,13 @@ class Create extends Component
     public function render()
     {
         $items = Item::all();
-        $storageLocations = Storagelocation::all();
+        $storagelocations = Storagelocation::all();
 
         return view(
             'livewire.itementity.create',
             compact([
                 'items',
-                'storageLocations'
+                'storagelocations'
             ])
         );
     }

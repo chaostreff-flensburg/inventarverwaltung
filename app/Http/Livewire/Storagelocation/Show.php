@@ -14,11 +14,6 @@ class Show extends Component
         $this->location = $location;
     }
 
-    public function create()
-    {
-        return redirect()->route('storagelocation.create');
-    }
-
     public function edit()
     {
         return redirect()->route('storagelocation.edit', [

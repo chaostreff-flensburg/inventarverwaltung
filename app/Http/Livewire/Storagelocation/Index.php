@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Storagelocation;
 
-use Livewire\Component;
 use App\Models\Storagelocation;
+use Livewire\Component;
 
 class Index extends Component
 {
@@ -12,14 +12,19 @@ class Index extends Component
 
     }
 
+    public function create()
+    {
+        return redirect()->route('storagelocation.create');
+    }
+
     public function render()
     {
-        $storageLocations = Storagelocation::all();
+        $storagelocations = Storagelocation::all();
 
         return view(
             'livewire.storagelocation.index',
             compact([
-                'storageLocations'
+                'storagelocations'
             ])
         );
     }
