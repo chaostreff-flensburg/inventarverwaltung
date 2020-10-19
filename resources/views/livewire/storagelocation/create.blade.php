@@ -18,6 +18,6 @@
             </div>
         </fieldset>
 
-        <button type="submit" class="btn">Save Item</button>
+        <button type="submit" class="btn">Save Storagelocation</button>
     </form>
 </div>
