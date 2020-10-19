@@ -21,3 +21,4 @@ Route::livewire('/itementity/{itementity}', 'itementity.show')->name('itementity
 Route::livewire('/itementity/{itementity}/refill', 'itementity.refill')->name('itementity.refill');
 Route::livewire('/itementity/{itementity}/checkout', 'itementity.checkout')->name('itementity.checkout');
 Route::livewire('/storagelocation/index', 'storagelocation.index')->name('storagelocation.index');
+Route::livewire('/storagelocation/{location}', 'storagelocation.show')->name('storagelocation.show');

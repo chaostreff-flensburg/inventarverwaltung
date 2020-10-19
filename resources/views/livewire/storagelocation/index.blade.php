@@ -12,7 +12,9 @@
                 <div class="table--cell table--select">
                 </div>
                 <div class="table--cell">
-                    {{ $location->name }}
+                    <a href="{{ route('storagelocation.show', ['location' => $location ]) }}" class="table--headline">
+                        {{ $location->name }}
+                    </a>
                 </div>
                 <div class="table--cell">
                     {{ $location->description }}

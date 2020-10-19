@@ -9,7 +9,7 @@ body {
 a {
     text-decoration: none;
     color: #f6a61f;
-    
+
     &:hover, &:focus {
         color: #1e2123;
     }
@@ -97,7 +97,7 @@ h2 {
             outline: none;
         }
     }
-    
+
     input {
         box-sizing: border-box;
         width: 100%;
@@ -147,16 +147,16 @@ h2 {
 
                 @media (min-width: 600px) {
                     display: none;
-                }        
+                }
             }
 
             &.table--head {
                 font-weight: 600;
                 display: none;
-                
+
                 @media (min-width: 600px) {
                     display: block;
-                }        
+                }
             }
 
             &.table--small {
