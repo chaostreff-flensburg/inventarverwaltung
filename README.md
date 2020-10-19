@@ -5,12 +5,22 @@ php artisan migrate:fresh --seed
 ```
 
 ## Development with Docker
+
+To access the container user the following command:
+
+```
+docker-compose exec tooling bash
+```
+
+Run artisan commands in the application container and other commands like composer or npm in the tooling container.
+
+### Use with Linux
 To Develop with docker under linux you have to Export your user-id and group-id by adding th following to your bashrc
 
     export USER_ID=$(id -u)
     export GROUP_ID=$(id -g)
 
-To access the container user the follwing command:
+To access the container user the following command:
 
     docker-compose exec --user ctfluser tooling bash
 
@@ -30,6 +40,9 @@ To expose a port to your host add an docker-compose.override.yml like this one:
     application:
         ports:
             - 8080:80
+
+Without Linux, use
+    `docker-compose exec tooling bash`
 
 ## Hosting with docker-compose
 
@@ -64,5 +77,8 @@ To expose a port to your host add an docker-compose.override.yml like this one:
 
 - Create env file like .env.example
 - startup container
-- crate APP_KEY width
-- magrate database
+- go into the container
+- if you want to use sqlite, create file with `touch ./storage/app/laravel.sqlite`
+- type `composer install`
+- generate APP_KEY with `php artisan key:generate`
+- migrate database
