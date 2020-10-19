@@ -25,9 +25,11 @@ class Create extends Component
             'description' => 'required|string',
         ]);
 
-        Storagelocation::create($validatedData);
+        $storagelocation = Storagelocation::create($validatedData);
 
-        return redirect()->route('storagelocation.index');
+        return redirect()->route('storagelocation.show', [
+            'storagelocation' => $storagelocation,
+        ]);
     }
 
     public function render()
