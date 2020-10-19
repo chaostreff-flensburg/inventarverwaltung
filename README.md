@@ -16,20 +16,7 @@ To access the container user the follwing command:
 
 Run artisan commands in the application container and other commands like composer or npm in the tooling container.
 
-To expose a port to your host add an docker-compose.override.yml like this one:
-
-    version: '3.3'
-
-    networks:
-    web:
-        external: true
-    stack:
-        external: false
-
-    services:
-    application:
-        ports:
-            - 8080:80
+When you use this without [traefik](https://github.com/traefik/traefik), run `docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d` to execute both files.
 
 ## Hosting with docker-compose
 
@@ -63,6 +50,7 @@ To expose a port to your host add an docker-compose.override.yml like this one:
 
 
 - Create env file like .env.example
+- add port to your `APP_URL` (e.g. `http://localhost:8080`)
 - startup container
-- crate APP_KEY width
-- magrate database
+- create APP_KEY width
+- migrate database
