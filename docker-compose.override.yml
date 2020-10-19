@@ -1,0 +1,12 @@
+version: '3.3'
+
+networks:
+  web:
+    external: true
+  stack:
+    external: false
+
+services:
+  application:
+    ports:
+      - 8080:80
