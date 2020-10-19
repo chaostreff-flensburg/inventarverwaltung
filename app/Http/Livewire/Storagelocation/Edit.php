@@ -39,7 +39,7 @@ class Edit extends Component
         $this->storagelocation->save();
 
         return redirect()->route('storagelocation.show', [
-            'storagelocation' => $this->storagelocation,
+            'location' => $this->storagelocation,
         ]);
     }
 
