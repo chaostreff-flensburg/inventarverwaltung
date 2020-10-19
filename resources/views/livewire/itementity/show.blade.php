@@ -1,53 +1,53 @@
 <div class="form-container container">
-    <legend>Itementity</legend>
+    <legend>@lang('views/itementity/show.title')</legend>
     <h2>{{ $entity->identifier }}</h2>
-    
+
     <fieldset>
-        <legend>Item</legend>
+        <legend>@lang('views/item/title.singular')</legend>
         <a href="{{ route('item.show', $entity->item) }}">{{ $entity->item->name }}</a>
     </fieldset>
 
     <fieldset>
-        <legend>Status</legend>
+        <legend>@lang('views/itementity/checkout.status')</legend>
         {{ $entity->display_status }}
     </fieldset>
 
     @if ($entity->consumable == 0)
     <fieldset>
-        <legend>Borrowed by</legend>
+        <legend>@lang('views/itementity/checkout.borrowed')</legend>
         {{ $entity->borrowed_by }}
     </fieldset>
     @endif
 
     <fieldset>
-        <legend>Storagelocation</legend>
+        <legend>@lang('views/storagelocation/title.singular')</legend>
         {{ $entity->storagelocation->name }}
     </fieldset>
 
     <fieldset>
-        <legend>Consumable</legend>
+        <legend>@lang('views/itementity/checkout.consumable')</legend>
         {{ $entity->consumable == 0 ? 'No' : 'Yes' }}
     </fieldset>
 
     @if ($entity->consumable != 0)
     <fieldset>
-        <legend>Current Amount</legend>
+        <legend>@lang('views/itementity/checkout.amount')</legend>
         {{ $entity->amount }}
     </fieldset>
     @endif
 
     <fieldset>
     @if ($entity->consumable != 0)
-    <a class="btn" wire:click="pick">Pick a Item</a>
-    <a class="btn" href="{{ route('itementity.refill', $entity) }}">Refill</a>
+    <a class="btn" wire:click="pick">@lang('views/itementity/show.pick')Pick a Item</a>
+    <a class="btn" href="{{ route('itementity.refill', $entity) }}">@lang('views/itementity/show.refill')Refill</a>
     @else
         @if ($entity->status == 1)
-            <a class="btn" wire:click="checkout">Checkout</a>
+            <a class="btn" wire:click="checkout">@lang('views/itementity/show.checkout')Checkout</a>
         @else
-            <a class="btn" wire:click="checkin">Checkin</a>
+            <a class="btn" wire:click="checkin">@lang('views/itementity/show.checkin')Checkin</a>
         @endif
-        <a class="btn" wire:click="lost">Lost</a>
+        <a class="btn" wire:click="lost">@lang('views/itementity/show.lost')Lost</a>
     @endif
-    <a class="btn" wire:click="delete">Delete Itementity</a>
+    <a class="btn" wire:click="delete">@lang('views/itementity/show.delete')Delete Itementity</a>
     </fieldset>
 </div>
