@@ -13,6 +13,9 @@
         <fieldset>
             <legend>Item</legend>
             <select wire:model.debounce.500ms="item_id">
+                <option value="">
+                    Select Item
+                </option>
                 @foreach($items as $item)
                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                 @endforeach
@@ -41,6 +44,9 @@
         <fieldset>
             <legend>Storagelocation</legend>
             <select wire:model.debounce.500ms="storagelocation_id">
+                <option value="">
+                    Select Storagelocation
+                </option>
             @foreach($storageLocations as $storageLocation)
                 <option value="{{ $storageLocation->id }}">{{ $storageLocation->name }}</option>
                 @endforeach
