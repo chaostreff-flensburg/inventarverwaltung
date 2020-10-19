@@ -23,3 +23,5 @@ Route::livewire('/itementity/{itementity}/refill', 'itementity.refill')->name('i
 Route::livewire('/itementity/{itementity}/checkout', 'itementity.checkout')->name('itementity.checkout');
 Route::livewire('/storagelocation/{storagelocation}/edit', 'storagelocation.edit')->name('storagelocation.edit');
 Route::livewire('/storagelocation/index', 'storagelocation.index')->name('storagelocation.index');
+Route::livewire('/storagelocation/create', 'storagelocation.create')->name('storagelocation.create');
+Route::livewire('/storagelocation/index', 'storagelocation.index')->name('storagelocation.index');
