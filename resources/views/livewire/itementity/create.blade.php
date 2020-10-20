@@ -47,8 +47,8 @@
                 <option value="">
                     Select Storagelocation
                 </option>
-            @foreach($storageLocations as $storageLocation)
-                <option value="{{ $storageLocation->id }}">{{ $storageLocation->name }}</option>
+                @foreach($storagelocations as $storagelocation)
+                    <option value="{{ $storagelocation->id }}">{{ $storagelocation->name }}</option>
                 @endforeach
             </select>
             <div class="helper-text">

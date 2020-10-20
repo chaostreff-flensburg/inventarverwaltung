@@ -2,7 +2,7 @@
 
 return [
     'title' => 'Inventory System',
-    'item' => 'New Item',
-    'itementity' => 'New Itementity',
-    'storagelocation' => 'New Storage Location',
+    'item' => 'Items',
+    'itementity' => 'Itementities',
+    'storagelocation' => 'Storage Locations',
 ];

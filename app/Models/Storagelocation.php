@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Itementity;
 use Illuminate\Database\Eloquent\Model;
 
 class Storagelocation extends Model
@@ -12,4 +13,9 @@ class Storagelocation extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
+
+    public function itementities()
+    {
+        return $this->hasMany(Itementity::class);
+    }
 }
