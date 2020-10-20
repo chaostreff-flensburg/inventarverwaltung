@@ -1,6 +1,6 @@
 <div class="container">
     <div class="flex-container space-evenly">
-        <h2>Storage Locations</h2>
+        <h2>@lang('views/storagelocation/index.title')</h2>
 
         <a class="btn create" wire:click="create">Create</a>
     </div>
@@ -8,8 +8,8 @@
     <div class="table">
         <div class="table--row">
             <div class="table--cell table--head"></div>
-            <div class="table--cell table--head">Name</div>
-            <div class="table--cell table--head">Description</div>
+            <div class="table--cell table--head">@lang('models/storagelocation.attributes.name')</div>
+            <div class="table--cell table--head">@lang('models/storagelocation.attributes.description')</div>
         </div>
         @foreach ($storagelocations as $location)
             <div class="table--row">

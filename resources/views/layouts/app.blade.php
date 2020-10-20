@@ -3,10 +3,10 @@
 @include('layouts.head')
 <body>
     <header class="header">
-        <a href="{{ route('inventory.search') }}" class="logo">Inventory System</a>
-        <a href="{{ route('item.index') }}">Items</a>
-        <a href="{{ route('itementity.index') }}">Item Entities</a>
-        <a href="{{ route('storagelocation.index') }}">Storage Locations</a>
+        <a href="{{ route('inventory.search') }}" class="logo">@lang('views/app.title')</a>
+        <a href="{{ route('item.index') }}">@lang('views/app.item')</a>
+        <a href="{{ route('itementity.index') }}">@lang('views/app.itementity')</a>
+        <a href="{{ route('storagelocation.index') }}">@lang('views/app.storagelocation')</a>
     </header>
     <div id="app">
         @yield('content')

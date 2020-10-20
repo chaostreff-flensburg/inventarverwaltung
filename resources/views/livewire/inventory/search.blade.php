@@ -1,9 +1,9 @@
 <div class="container">
-    <h2>Itementities</h2>
+    <h2>@lang('views/inventory/search.title')</h2>
 
     <div class="form-container">
         <fieldset>
-            <legend>Search</legend>
+            <legend>@lang('views/inventory/search.search')</legend>
             <input wire:model.debounce.500ms="search" type="text">
             <p>
             @foreach($selectedTags as $tag)
@@ -25,10 +25,10 @@
     <div class="table">
         <div class="table--row">
             <div class="table--cell table--head"></div>
-            <div class="table--cell table--head">Identifier</div>
-            <div class="table--cell table--head">Status</div>
-            <div class="table--cell table--head">Tags</div>
-            <div class="table--cell table--head">Location</div>
+            <div class="table--cell table--head">@lang('views/inventory/search.identifier')</div>
+            <div class="table--cell table--head">@lang('views/inventory/search.status')</div>
+            <div class="table--cell table--head">@lang('views/inventory/search.tags')</div>
+            <div class="table--cell table--head">@lang('views/inventory/search.location')</div>
         </div>
     @foreach ($itemEntities as $itemEntity)
         <div class="table--row">
@@ -45,7 +45,7 @@
                 {{ $itemEntity->display_status }}
             </div>
             <div class="table--cell table--small">
-                <div class="table--inline-head">Tags</div>
+                <div class="table--inline-head">@lang('views/inventory/search.tags')</div>
                 @foreach($itemEntity->tags as $tag)
                 <a wire:click="addTag({{ $tag->id }})" class="tag">
                     {{ $tag->name }}
@@ -53,7 +53,7 @@
                 @endforeach
             </div>
             <div class="table--cell table--small">
-                <div class="table--inline-head">Storagelocation</div>
+                <div class="table--inline-head">@lang('models.storagelocation.title.singular')</div>
                 <a wire:click="addLocation({{ $itemEntity->storagelocation->id }})" class="tag">
                     {{ $itemEntity->storagelocation->name }}
                 </a>
