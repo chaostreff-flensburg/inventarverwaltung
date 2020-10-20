@@ -1,23 +1,17 @@
-version: '3.3'
+version: '3.7'
 
 networks:
   web:
     external: true
-  stack:
-    external: false
 
 services:
   application:
     container_name: inventar_application
     build:
       context: .
-      dockerfile: ./docker/application.Dockerfile
-      args:
-        USER_ID: $USER_ID
-        GROUP_ID: $GROUP_ID
-    networks:
-      - web
-      - stack
+      dockerfile: docker/app/Dockerfile
+      target: dev
+    command: runsvdir /etc/service
     extra_hosts:
       - 'inventar.localhost:127.0.0.1'
       - 'inventar.localhost.chaostreff-flensburg.de:127.0.0.1'
@@ -27,23 +21,22 @@ services:
       - "traefik.http.routers.inventar.entrypoints=web"
       - "traefik.http.services.inventar.loadbalancer.server.port=80"
       - "traefik.docker.network=web"
-    working_dir: /var/www/html
-    volumes:
-      - ./:/var/www/html
-    restart: always
-
-  tooling:
-    container_name: inventar_tooling
-    build:
-      context: .
-      dockerfile: ./docker/tooling.Dockerfile
-      args:
-        USER_ID: $USER_ID
-        GROUP_ID: $GROUP_ID
     networks:
-      - stack
-    tty: true
-    working_dir: /var/www/html
+      - web
+    environment:
+      - PHP_OPCACHE_VALIDATE_TIMESTAMPS=1
+      - 'USER_ID=${USER_ID:-0}'
+      - 'GROUP_ID=${GROUP_ID:-0}'
+      - STARTUP_COMMAND1=/home/app/modules/createLogs.sh
+      - STARTUP_COMMAND2=touch /opt/app/storage/app/laravel.sqlite
+      - STARTUP_COMMAND3=composer install --no-progress --no-interaction
+      - STARTUP_COMMAND4=npm install
+      - STARTUP_COMMAND5=npm run dev
+      - STARTUP_COMMAND6=/home/app/modules/recreateUserWithOwnIds.sh
+      - STARTUP_COMMAND7=/home/app/modules/ownerships.sh
+      - STARTUP_COMMAND8=php artisan migrate --force &
     volumes:
-      - ./:/var/www/html
-    restart: always
+      - '.:/opt/app:cached'
+      - './docker/app/.bashrc:/home/www-data/.bashrc:cached'
+    restart: unless-stopped
+
